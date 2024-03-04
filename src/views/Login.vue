@@ -79,7 +79,6 @@ const form = ref({
   encryptIdPassword: ''
 });
 const encryptLoginData = async () => {
-  router.push('/employees');
   
   const id = form.value.username; // ref 변수에 접근
   const pw = form.value.password; // ref 변수에 접근

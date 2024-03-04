@@ -66,7 +66,7 @@ const onSubmit = async () => {
 </template> -->
 
 
-<script>
+<!-- <script>
 import JsEncrypt from "jsencrypt";
  
 export default {
@@ -112,7 +112,7 @@ export default {
         }
     }
 }
-</script>
+</script> -->
 
 <!-- <script>
 export default {
@@ -123,7 +123,7 @@ export default {
     }
   }
 }
-</script>
+</script> -->
 
 <script setup>
 
@@ -142,7 +142,7 @@ const onSubmit = async () => {
         <q-card-section class="q-mb-none">
           <div class="text-h6 text-center">로그인</div>
         </q-card-section>
-        <q-card-section class="q-mb-none q-gutter-y-lg">
+        <!-- <q-card-section class="q-mb-none q-gutter-y-lg">
             <q-input
               filled
               type="text"
@@ -170,7 +170,7 @@ const onSubmit = async () => {
               label="Login"
               :disable="!username || !password"
             />
-          </q-card-section>
+          </q-card-section> -->
         <q-card-section class="q-mb-none q-gutter-y-lg">
           <q-btn
             type="submit"
@@ -184,4 +184,4 @@ const onSubmit = async () => {
       </q-form>
     </q-card>
   </div>
-</template> -->
+</template>

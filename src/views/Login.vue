@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue';
 import { useQuasar } from 'quasar';
 import { useAuthStore } from '@/stores/useAuth';
@@ -63,7 +63,7 @@ const onSubmit = async () => {
       </q-form>
     </q-card>
   </div>
-</template>
+</template> -->
 <!-- <script>
 import JsEncrypt from "jsencrypt";
  
@@ -112,11 +112,20 @@ export default {
 }
 </script> -->
 
-<!-- <script setup>
+<script>
+export default {
+  data(){
+    return {
+      username: '',
+      password: ''
+    }
+  }
+}
+</script>
+
+<script setup>
 
 import router from '@/router';
-import JsEncrypt from "jsencrypt";
-
 
 const onSubmit = async () => {
   router.push('/employees');
@@ -132,6 +141,35 @@ const onSubmit = async () => {
           <div class="text-h6 text-center">로그인</div>
         </q-card-section>
         <q-card-section class="q-mb-none q-gutter-y-lg">
+            <q-input
+              filled
+              type="text"
+              v-model="username"
+              label="ID *"
+              hint="for test: test"
+              lazy-rules
+              :rules="[(val) => (val && val.length > 0) || 'Please type username(ID)']"
+            />
+            <q-input
+              filled
+              type="password"
+              v-model="password"
+              label="Password *"
+              hint="for test: test"
+              lazy-rules
+              :rules="[(val) => (val !== null && val !== '') || 'Please type your password']"
+            />
+            <q-btn
+              type="submit"
+              unelevated
+              color="primary"
+              size="lg"
+              class="full-width"
+              label="Login"
+              :disable="!username || !password"
+            />
+          </q-card-section>
+        <q-card-section class="q-mb-none q-gutter-y-lg">
           <q-btn
             type="submit"
             unelevated
@@ -144,4 +182,4 @@ const onSubmit = async () => {
       </q-form>
     </q-card>
   </div>
-</template> -->
+</template>

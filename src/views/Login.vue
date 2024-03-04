@@ -56,7 +56,16 @@ export default {
   }
 }
 </script> -->
+<script>
+import { JSEncrypt } from 'jsencrypt';
 
+export function encrypt(data, key) {
+  const sign = new JSEncrypt();
+  sign.setKey(key);
+  return sign.encrypt(data).toString();
+  };
+
+</script>
 <script setup>
 
 import router from '@/router';
@@ -67,21 +76,17 @@ const form = ref({
   password: '',
   encryptIdPassword: ''
 });
-
 const encryptLoginData = async () => {
-  const { Buffer } = require('node:buffer');
   const id = form.value.username; // ref 변수에 접근
   const pw = form.value.password; // ref 변수에 접근
   const publicKey = process.env.VUE_APP_PUBLIC_KEY;
   // const publicKey = process.env.VUE_APP_PUBLIC_KEY.replace(/\|/g, '\n');
 
-  const buffer = Buffer.from(`${id}|${pw}`);
-  const encrypt = crypto.publicEncrypt({
-    key: publicKey,
-    padding: crypto.constants.RSA_PKCS1_PADDING,
-  }, buffer);
+  const data = `${id}|${pw}`;
+  const encryptedData = encrypt(data, publicKey); // RSA 암호화 함수 사용
   
-  form.value.encryptIdPassword = encrypt.toString('base64'); // ref 변수에 접근
+  // form.value.encryptIdPassword = encrypt.toString('base64'); // ref 변수에 접근
+  form.value.encryptIdPassword = encryptedData;
   form.value.username = ''; // ref 변수에 접근
   form.value.password = ''; // ref 변수에 접근
 

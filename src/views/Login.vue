@@ -81,8 +81,12 @@ const encryptLoginData = async () => {
   const pw = form.value.password; // ref 변수에 접근
   const publicKey = process.env.VUE_APP_PUBLIC_KEY;
   // const publicKey = process.env.VUE_APP_PUBLIC_KEY.replace(/\|/g, '\n');
+  console.log('1 id', id);
+  console.log('1 pw', pw);
+  console.log('1 publicKey', publicKey);
 
   const data = `${id}|${pw}`;
+  console.log('1 data', data);
   const encryptedData = encrypt(data, publicKey); // RSA 암호화 함수 사용
   
   // form.value.encryptIdPassword = encrypt.toString('base64'); // ref 변수에 접근

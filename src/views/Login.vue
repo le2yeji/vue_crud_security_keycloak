@@ -84,8 +84,8 @@ const onSubmit = async () => {
               hint="for test: test"
               lazy-rules
               :rules="[(val) => (val && val.length > 0) || 'Please type username(ID)']"
-            />
-            <q-input
+          />
+          <q-input
               filled
               type="password"
               v-model="password"
@@ -93,8 +93,8 @@ const onSubmit = async () => {
               hint="for test: test"
               lazy-rules
               :rules="[(val) => (val !== null && val !== '') || 'Please type your password']"
-            />
-            <q-btn
+          />
+          <q-btn
               type="submit"
               unelevated
               color="primary"
@@ -102,7 +102,7 @@ const onSubmit = async () => {
               class="full-width"
               label="Login"
               :disable="!username || !password"
-            />
+          />
           <q-btn
             type="submit"
             unelevated

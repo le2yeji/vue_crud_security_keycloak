@@ -71,8 +71,8 @@ const form = ref({
 const encryptLoginData = async () => {
   const id = form.value.username; // ref 변수에 접근
   const pw = form.value.password; // ref 변수에 접근
-  // const publicKey = process.env.VUE_APP_PUBLIC_KEY.replaceAll('|', '\n');
-  const publicKey = process.env.VUE_APP_PUBLIC_KEY.replace(/\|/g, '\n');
+  const publicKey = process.env.VUE_APP_PUBLIC_KEY.replaceAll('|', '\n');
+  // const publicKey = process.env.VUE_APP_PUBLIC_KEY.replace(/\|/g, '\n');
 
   const buffer = Buffer.from(`${id}|${pw}`);
   const encrypt = crypto.publicEncrypt({

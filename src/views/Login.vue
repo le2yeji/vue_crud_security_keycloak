@@ -59,7 +59,7 @@ export default {
 <script>
 import { JSEncrypt } from 'jsencrypt';
 import { fetchWrapper } from '@/helpers';
-const baseUrl = `http://211.252.87.34:40008/api/v1`;
+const baseUrl = `/api/v1`;
 
 export function encrypt(data, key) {
   const sign = new JSEncrypt();

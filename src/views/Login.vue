@@ -1,4 +1,52 @@
-<script setup>
+<script>
+import JsEncrypt from "jsencrypt";
+ 
+export default {
+    name: "Login",
+    data: () => ({
+        publicKeyRSA: "",
+        id: undefined,
+        password: undefined,
+    }),
+    // created: 로그인 화면 진입 시 바로 실행
+    created() {
+        // RSA Key 생성
+        this.axios_post("/initRsa")
+            .then(res => {
+                this.publicKeyRSA = res.data.data;
+            })
+            .catch(err => {
+                console.log("Api rejected : " + err);
+            });
+    },
+    methods: {
+        // ID, 비밀번호 입력 후 로그인 버튼 클릭
+        sendOTP() {
+            // public key 생성
+            const jse = new JsEncrypt();
+            jse.setPublicKey(this.publicKeyRSA);
+ 
+            // password RSA 암호화
+            const encryptPW = jse.encrypt(this.password);
+            this.signin(this.id, encryptPW);
+        },
+        signin(id, encryptPW) {
+            this.axios_post("/signin", {
+                username: id,
+                password: encryptPW
+            })
+            .then(response => {
+                this.$store.commit("LOG_IN", response.data);
+            })
+            .catch(err => {
+                console.log("Api rejected : " + err);
+            });
+        }
+    }
+}
+</script>
+
+<!-- <script setup>
 
 import router from '@/router';
 
@@ -58,4 +106,4 @@ const onSubmit = async () => {
       </q-form>
     </q-card>
   </div>
-</template>
+</template> -->

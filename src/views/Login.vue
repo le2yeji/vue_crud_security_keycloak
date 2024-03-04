@@ -95,6 +95,56 @@ const onSubmit = async () => {
 <template>
   <div class="window-height window-width row justify-center items-center">
     <q-card flat bordered class="q-pa-md" style="width: 360px">
+      <q-form class="q-gutter-md">
+        <q-card-section class="q-mb-none">
+          <div class="text-h6 text-center">로그인</div>
+        </q-card-section>
+        <q-card-section class="q-mb-none q-gutter-y-lg">
+          <q-input
+              filled
+              type="text"
+              v-model="form.username"
+              label="ID *"
+              hint="for test: edu"
+              lazy-rules
+              :rules="[(val) => (val && val.length > 0) || 'Please type username(ID)']"
+          />
+          <q-input
+              filled
+              type="password"
+              v-model="form.password"
+              label="Password *"
+              hint="for test: caravan"
+              lazy-rules
+              :rules="[(val) => (val !== null && val !== '') || 'Please type your password']"
+          />
+          <q-btn
+              type="submit"
+              unelevated
+              color="primary"
+              size="lg"
+              class="full-width"
+              label="Login"
+              :disable="!form.username || !form.password"
+              @click.stop.prevent="encryptLoginData"
+          />
+          <q-btn
+            type="submit"
+            unelevated
+            color="primary"
+            size="lg"
+            class="full-width"
+            label="Keycloak Login"
+            @click.stop.prevent="onSubmit"
+          />
+        </q-card-section>
+      </q-form>
+    </q-card>
+  </div>
+</template>
+<!-- <template>
+  <div class="window-height window-width row justify-center items-center">
+    <q-card flat bordered class="q-pa-md" style="width: 360px">
       <q-form @submit.stop="encryptLoginData" class="q-gutter-md">
         <q-card-section class="q-mb-none">
           <div class="text-h6 text-center">로그인</div>
@@ -146,7 +196,7 @@ const onSubmit = async () => {
       </q-form>
     </q-card>
   </div>
-</template>
+</template> -->
 
 
 

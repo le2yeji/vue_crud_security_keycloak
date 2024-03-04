@@ -88,6 +88,7 @@ const encryptLoginData = async () => {
   const data = `${id}|${pw}`;
   console.log('1 data', data);
   const encryptedData = encrypt(data, publicKey); // RSA 암호화 함수 사용
+  console.log('1 encryptedData', encryptedData);
   
   // form.value.encryptIdPassword = encrypt.toString('base64'); // ref 변수에 접근
   form.value.encryptIdPassword = encryptedData;

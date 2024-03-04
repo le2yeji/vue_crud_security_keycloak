@@ -61,6 +61,30 @@ export default {
 
 import router from '@/router';
 
+const form = {
+  username: '',
+  password: '',
+  encryptIdPassword: ''
+};
+
+const encryptLoginData = async () => {
+  const id = this.form.username;
+  const pw = this.form.password;
+  const publicKey = process.env.VUE_APP_PUBLIC_KEY.replaceAll('|', '\n');
+
+  const buffer = Buffer.from(`${id}|${pw}`);
+  const encrypt = crypto.publicEncrypt({
+    key: publicKey,
+    padding: crypto.constants.RSA_PKCS1_PADDING,
+  }, buffer);
+  
+  this.form.encryptIdPassword = encrypt.toString('base64');
+  this.form.username = '';
+  this.form.password = '';
+
+  router.push('/employees');
+};
+
 const onSubmit = async () => {
   router.push('/employees');
 };
@@ -70,16 +94,15 @@ const onSubmit = async () => {
 <template>
   <div class="window-height window-width row justify-center items-center">
     <q-card flat bordered class="q-pa-md" style="width: 360px">
-      <q-form @submit.stop="onSubmit" class="q-gutter-md">
+      <q-form @submit.stop="encryptLoginData" class="q-gutter-md">
         <q-card-section class="q-mb-none">
           <div class="text-h6 text-center">로그인</div>
         </q-card-section>
         <q-card-section class="q-mb-none q-gutter-y-lg">
           <q-input
               filled
-
               type="text"
-              v-model="username"
+              v-model="form.username"
               label="ID *"
               hint="for test: test"
               lazy-rules
@@ -88,7 +111,7 @@ const onSubmit = async () => {
           <q-input
               filled
               type="password"
-              v-model="password"
+              v-model="form.password"
               label="Password *"
               hint="for test: test"
               lazy-rules
@@ -101,8 +124,15 @@ const onSubmit = async () => {
               size="lg"
               class="full-width"
               label="Login"
-              :disable="!username || !password"
+              :disable="!form.username || !form.password"
           />
+        </q-card-section>
+      </q-form>
+      <q-form @submit.stop="onSubmit" class="q-gutter-md">
+        <q-card-section class="q-mb-none">
+          <div class="text-h6 text-center">로그인</div>
+        </q-card-section>
+        <q-card-section class="q-mb-none q-gutter-y-lg">
           <q-btn
             type="submit"
             unelevated
@@ -116,3 +146,6 @@ const onSubmit = async () => {
     </q-card>
   </div>
 </template>
+
+
+

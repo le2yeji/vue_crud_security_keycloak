@@ -16,7 +16,7 @@ const onSubmit = async () => {
         <q-card-section class="q-mb-none">
           <div class="text-h6 text-center">로그인</div>
         </q-card-section>
-        <q-card-section class="q-mb-none q-gutter-y-lg">
+          <q-card-section class="q-mb-none q-gutter-y-lg">
             <q-input
               filled
               type="text"
@@ -44,7 +44,7 @@ const onSubmit = async () => {
               label="Login"
               :disable="!username || !password"
             />
-        </q-card-section>
+          </q-card-section>
         <q-card-section class="q-mb-none q-gutter-y-lg">
           <q-btn
             type="submit"

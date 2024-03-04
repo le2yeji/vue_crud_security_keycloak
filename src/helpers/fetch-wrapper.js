@@ -16,7 +16,9 @@ function request(method) {
       method,
       headers: authHeader(composeUrl),
     };
+    console.log('데이터확인 body',body);
     if (body) {
+      console.log('데이터확인 body2',body);
       requestOptions.headers['Content-Type'] = 'application/json';
       requestOptions.body = JSON.stringify(body);
     }

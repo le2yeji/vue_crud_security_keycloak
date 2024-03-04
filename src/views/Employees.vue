@@ -66,7 +66,8 @@ const keycloakService = serviceFactory(
 
 // fetch
 onMounted(async () => {
-  //  await keycloakService.login();
+   console.log('onMounted', keycloakService);
+   await keycloakService.login();
    getEmployees();
 });
 

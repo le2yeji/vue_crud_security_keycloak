@@ -1,7 +1,7 @@
 import { useAuthStore } from '@features/keycloak/store/useAuthStore';
 
 //import { inject } from 'vue';
-console.log('첫번째', url, body);
+console.log('첫번째');
 export const fetchWrapper = {
   get: request('GET'),
   post: request('POST'),
@@ -10,7 +10,7 @@ export const fetchWrapper = {
 };
 
 function request(method) {
-  console.log('두번째', url, body);
+  console.log('두번째');
   return async (url, body) => {
     const composeUrl = url ; //import.meta.env.VITE_API_URL + url
 
@@ -30,7 +30,7 @@ function request(method) {
 // helper functions
 
 function authHeader() {
-  console.log('세번째', url, body);
+  console.log('세번째');
   // return auth header with jwt if user is logged in and request is to the api url
   const { user } = JSON.parse(localStorage.getItem('auth'));
   const token = user.accessToken; // JSON.parse(user.accessToken);
@@ -44,7 +44,7 @@ function authHeader() {
 }
 
 function handleResponse(response) {
-  console.log('네번째', url, body);
+  console.log('네번째');
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
 

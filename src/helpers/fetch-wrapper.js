@@ -20,7 +20,8 @@ function request(method) {
       requestOptions.headers['Content-Type'] = 'application/json';
       requestOptions.body = JSON.stringify(body);
     }
-    console.log('데이터확인',requestOptions);
+    console.log('데이터확인 url',composeUrl);
+    console.log('데이터확인 requestOptions',requestOptions);
     const response = await fetch(composeUrl, requestOptions);
     console.log('데이터확인2', response);
     return handleResponse(response);

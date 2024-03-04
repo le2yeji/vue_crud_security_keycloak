@@ -64,7 +64,9 @@ const onSubmit = async () => {
     </q-card>
   </div>
 </template> -->
-<!-- <script>
+
+
+<script>
 import JsEncrypt from "jsencrypt";
  
 export default {
@@ -110,9 +112,9 @@ export default {
         }
     }
 }
-</script> -->
+</script>
 
-<script>
+<!-- <script>
 export default {
   data(){
     return {
@@ -182,4 +184,4 @@ const onSubmit = async () => {
       </q-form>
     </q-card>
   </div>
-</template>
+</template> -->

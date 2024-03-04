@@ -79,7 +79,7 @@ export default {
     // created: 로그인 화면 진입 시 바로 실행
     created() {
         // RSA Key 생성
-        this.axios_post("/initRsa")
+        this.axios_post("/api/v1/initRsa")
             .then(res => {
                 this.publicKeyRSA = res.data.data;
             })

@@ -102,7 +102,11 @@ const encryptLoginData = async () => {
   const user = await fetchWrapper.post(`${baseUrl}/init-rsa`, form.value.encryptIdPassword);
   console.log('user', user);
 
-  router.push('/employees');
+  // store user details and jwt in local storage to keep user logged in between page refreshes
+  localStorage.setItem('user', JSON.stringify(user));
+
+  // redirect to previous url or default to home page
+  router.push(this.returnUrl || '/employees');
 };
 
 const onSubmit = async () => {

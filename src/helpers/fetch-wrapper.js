@@ -9,21 +9,20 @@ export const fetchWrapper = {
 };
 
 function request(method) {
-  console.log('두번째', method);
   return async (url, body) => {
-    console.log('확인 url', url);
     const composeUrl = url ; //import.meta.env.VITE_API_URL + url
 
     const requestOptions = {
       method,
       headers: authHeader(composeUrl),
     };
-    console.log('확인 body', body);
     if (body) {
       requestOptions.headers['Content-Type'] = 'application/json';
       requestOptions.body = JSON.stringify(body);
     }
+    console.log('데이터확인',requestOptions);
     const response = await fetch(composeUrl, requestOptions);
+    console.log('데이터확인2', response);
     return handleResponse(response);
   };
 }

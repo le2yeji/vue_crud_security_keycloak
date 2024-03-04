@@ -69,7 +69,7 @@ const form = ref({
 });
 
 const encryptLoginData = async () => {
-  const { buffer } = require('node:buffer');
+  const { Buffer } = require('node:buffer');
   const id = form.value.username; // ref 변수에 접근
   const pw = form.value.password; // ref 변수에 접근
   const publicKey = process.env.VUE_APP_PUBLIC_KEY;

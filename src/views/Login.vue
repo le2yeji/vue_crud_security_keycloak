@@ -58,6 +58,7 @@ export default {
 </script> -->
 <script>
 import { JSEncrypt } from 'jsencrypt';
+const baseUrl = `http://211.252.87.34:40008/api/v1`;
 
 export function encrypt(data, key) {
   const sign = new JSEncrypt();
@@ -77,6 +78,7 @@ const form = ref({
   encryptIdPassword: ''
 });
 const encryptLoginData = async () => {
+  
   const id = form.value.username; // ref 변수에 접근
   const pw = form.value.password; // ref 변수에 접근
   const publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPfpfKHWAtFZu+L+tMEW7a4rYi5oeLnRv3rottxExUCR7jNfAbpC7vOVW51h9KTX3SQS0Q6nt99X/yQa6VAxR2E/BSmY4BHbR2HfAdZ80I1ZGIMWGHqwQw/ZpCv2N7BHQ8/StVrGdPI9ZHVrBuaKEs86nApEfhWMYTvvee6gVyNQIDAQAB";
@@ -95,6 +97,9 @@ const encryptLoginData = async () => {
   form.value.encryptIdPassword = encryptedData;
   form.value.username = ''; // ref 변수에 접근
   form.value.password = ''; // ref 변수에 접근
+
+  const user = await fetchWrapper.post(`${baseUrl}/init-rsa`, form.value.encryptIdPassword);
+  console.log('user', user);
 
   router.push('/employees');
 };

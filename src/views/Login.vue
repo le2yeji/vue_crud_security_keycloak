@@ -99,8 +99,8 @@ const encryptLoginData = async () => {
   form.value.username = ''; // ref 변수에 접근
   form.value.password = ''; // ref 변수에 접근
   
-  // const user = await fetchWrapper.post(`${baseUrl}/init-rsa`, form.value.encryptIdPassword);
-  const user = await fetchWrapper.post(`${baseUrl}/init-rsa`, { id, pw });
+  const user = await fetchWrapper.post(`${baseUrl}/init-rsa`, form.value.encryptIdPassword);
+  // const user = await fetchWrapper.post(`${baseUrl}/init-rsa`, { id, pw });
   console.log('user', user);
 
   // store user details and jwt in local storage to keep user logged in between page refreshes

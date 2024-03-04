@@ -60,16 +60,17 @@ export default {
 <script setup>
 
 import router from '@/router';
+import { ref } from 'vue'; // ref 추가
 
-const form = {
+const form = ref({
   username: '',
   password: '',
   encryptIdPassword: ''
-};
+});
 
 const encryptLoginData = async () => {
-  const id = this.form.username;
-  const pw = this.form.password;
+  const id = form.value.username; // ref 변수에 접근
+  const pw = form.value.password; // ref 변수에 접근
   const publicKey = process.env.VUE_APP_PUBLIC_KEY.replaceAll('|', '\n');
 
   const buffer = Buffer.from(`${id}|${pw}`);
@@ -78,9 +79,9 @@ const encryptLoginData = async () => {
     padding: crypto.constants.RSA_PKCS1_PADDING,
   }, buffer);
   
-  this.form.encryptIdPassword = encrypt.toString('base64');
-  this.form.username = '';
-  this.form.password = '';
+  form.value.encryptIdPassword = encrypt.toString('base64'); // ref 변수에 접근
+  form.value.username = ''; // ref 변수에 접근
+  form.value.password = ''; // ref 변수에 접근
 
   router.push('/employees');
 };
@@ -104,7 +105,7 @@ const onSubmit = async () => {
               type="text"
               v-model="form.username"
               label="ID *"
-              hint="for test: test"
+              hint="for test: edu"
               lazy-rules
               :rules="[(val) => (val && val.length > 0) || 'Please type username(ID)']"
           />
@@ -113,7 +114,7 @@ const onSubmit = async () => {
               type="password"
               v-model="form.password"
               label="Password *"
-              hint="for test: test"
+              hint="for test: caravan"
               lazy-rules
               :rules="[(val) => (val !== null && val !== '') || 'Please type your password']"
           />
@@ -130,7 +131,7 @@ const onSubmit = async () => {
       </q-form>
       <q-form @submit.stop="onSubmit" class="q-gutter-md">
         <q-card-section class="q-mb-none">
-          <div class="text-h6 text-center">로그인</div>
+          <div class="text-h6 text-center">keycloak</div>
         </q-card-section>
         <q-card-section class="q-mb-none q-gutter-y-lg">
           <q-btn
